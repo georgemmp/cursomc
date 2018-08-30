@@ -2,21 +2,42 @@ package com.george.cursomc.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
+import com.george.cursomc.services.validation.ClienteInsert;
+
+@ClienteInsert
 public class ClienteNewDTO implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
+
+	@NotEmpty(message="O campo nome deve ser obrigatório")
+	@Length(min=5, max=80, message="Deve ter mínimo entre 5 a 80 caracteres")
 	private String nome;
+	
+	@NotEmpty(message="O campo email deve ser obrigatório")
+	@Email(message="Email inválido")
 	private String email;
+	
+	@NotEmpty(message="O campo deve ser obrigatório")
 	private String cpfOuCnpj;
+	
 	private Integer tipo;
 	
+	@NotEmpty(message="O campo deve ser obrigatório")
 	private String logradouro;
+	@NotEmpty(message="O campo deve ser obrigatório")
 	private String numero;
 	private String complemento;
+	@NotEmpty(message="O campo deve ser obrigatório")
 	private String bairro;
 	private String cep;
 	
+	@NotEmpty(message="O campo deve ser obrigatório")
 	private String telefone1;
 	private String telefone2;
 	private String telefone3;
