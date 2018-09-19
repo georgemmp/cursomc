@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.george.cursomc.domain.Categoria;
@@ -50,6 +51,9 @@ public class DBService {
 	@Autowired
 	private ItemPedidoRepository itemPedidoRepository;
 	
+	@Autowired
+	private BCryptPasswordEncoder pe;
+	
 	public void instantiateTestDatabase() throws Exception{
 		Categoria cat1 = new Categoria(null, "Escritório");
 		Categoria cat2 = new Categoria(null, "Informática");
@@ -69,7 +73,7 @@ public class DBService {
 		Cidade c2 = new Cidade(null, "São Paulo", est2);
 		Cidade c3 = new Cidade(null, "Campinas", est2);
 		
-		Cliente cli1 = new Cliente(null, "Maria", "georgemichel41@hotmail.com", "12158749366", TipoCliente.PESSOAFISICA);
+		Cliente cli1 = new Cliente(null, "Maria", "georgemichel41@hotmail.com", "12158749366", TipoCliente.PESSOAFISICA, pe.encode("123"));
 		
 		Endereco e1 = new Endereco(null, "Rua tal", "12", "", "Centro", "38700000", cli1, c1);
 		Endereco e2 = new Endereco(null, "Rua tal", "45", "", "Jardim America", "38700000", cli1, c2);
