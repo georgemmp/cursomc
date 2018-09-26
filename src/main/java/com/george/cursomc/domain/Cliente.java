@@ -30,13 +30,20 @@ public class Cliente implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
+	
 	private String nome;
+	
 	@Column(unique=true)
 	private String email;
+	
 	private String cpfOuCnpj;
+	
 	private Integer tipo;
+	
 	@JsonIgnore
 	private String senha;
+	
+	private String imageUrl;
 
 	@OneToMany(mappedBy="cliente", cascade=CascadeType.ALL)
 	private List<Endereco> enderecos = new ArrayList<>();
@@ -148,6 +155,14 @@ public class Cliente implements Serializable{
 		this.senha = senha;
 	}
 
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -172,6 +187,5 @@ public class Cliente implements Serializable{
 			return false;
 		return true;
 	}
-
 
 }
